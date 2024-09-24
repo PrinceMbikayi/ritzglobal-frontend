@@ -1,0 +1,12 @@
+Options -MultiViews
+RewriteEngine On
+RewriteBase /
+
+# Redirection HTTP vers HTTPS (si nécessaire)
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirection vers index.html pour gérer le routage avec React Router
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
